@@ -1,65 +1,147 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+import { motion } from "framer-motion";
+import { ArrowRight, Command } from "lucide-react";
+import Image from "next/image";
+import { FeaturesSection } from "@/components/features/features-section";
+import Footer from "@/components/footer";
+import LogoCarousel from "@/components/logo-carousel";
+import Navigation from "@/components/navigation";
+import PricingSection from "@/components/pricing/pricing-section";
+import TestimonialsSection from "@/components/testimonials-section";
+import { Button } from "@/components/ui/button";
+import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
+
+export default function Page() {
+	return (
+		<div className="min-h-screen bg-black text-foreground">
+			<Navigation />
+
+			{/* Hero Section */}
+			<motion.section
+				initial={{ opacity: 0, y: 20 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.5 }}
+				className="relative max-w-5xl mx-auto px-6 pt-40 pb-20"
+			>
+				{/* Background */}
+				<div className="absolute inset-0 -z-10 bg-[#0A0A0A]" />
+
+				<motion.div
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					transition={{ delay: 0.2 }}
+					className="inline-block mb-4 px-4 py-1.5 rounded-full glass"
+				>
+					<span className="text-sm font-medium text-primary flex items-center">
+						<Command className="size-4 inline-block mr-2" />
+						Next-gen crypto trading platform
+					</span>
+				</motion.div>
+
+				<div className="max-w-4xl relative z-10">
+					<h1 className="text-5xl md:text-7xl font-normal mb-4 tracking-tight text-left">
+						<span className="text-gray-200">
+							<TextGenerateEffect words="Trade crypto with" />
+						</span>
+						<br />
+						<span className="text-white font-medium">
+							<TextGenerateEffect words="confidence & security" />
+						</span>
+					</h1>
+
+					<motion.p
+						initial={{ opacity: 0, y: 20 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ delay: 0.4 }}
+						className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl text-left"
+					>
+						Experience seamless cryptocurrency trading with advanced features, real-time analytics, and
+						institutional-grade security. <span className="text-white">Start trading in minutes.</span>
+					</motion.p>
+
+					<motion.div
+						initial={{ opacity: 0, y: 20 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ delay: 0.5 }}
+						className="flex flex-col sm:flex-row gap-4 items-start"
+					>
+						<Button size="lg" className="button-gradient rounded-full">
+							Start Trading Now
+						</Button>
+						<Button size="lg" variant="outline" className="text-white cursor-pointer rounded-full">
+							View Markets <ArrowRight className="ml-2 size-4" />
+						</Button>
+					</motion.div>
+				</div>
+
+				<motion.div
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ delay: 0.6 }}
+					className="relative mx-auto max-w-5xl mt-20"
+				>
+					<div className="glass rounded-xl overflow-hidden">
+						<Image
+							alt="CryptoTrade Dashboard"
+							className="w-full h-auto"
+							height={1500}
+							src="/images/picture-12.png"
+							width={1500}
+						/>
+					</div>
+				</motion.div>
+			</motion.section>
+
+			{/* Logo Carousel */}
+			<LogoCarousel />
+
+			{/* Features Section */}
+			<div id="features" className="bg-black">
+				<FeaturesSection />
+			</div>
+
+			{/* Pricing Section */}
+			<div id="pricing" className="bg-black">
+				<PricingSection />
+			</div>
+
+			{/* Testimonials Section */}
+			<div className="bg-black">
+				<TestimonialsSection />
+			</div>
+
+			{/* CTA Section */}
+			<section className="max-w-5xl mx-auto px-6 py-20 relative bg-black">
+				<div
+					className="absolute inset-0 opacity-40"
+					style={{
+						backgroundImage: 'url("/images/picture-4.png")',
+						backgroundSize: "cover",
+						backgroundPosition: "center",
+					}}
+				/>
+				<motion.div
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.5 }}
+					className="bg-[#0A0A0A]/80 backdrop-blur-lg border border-white/10 rounded-2xl p-8 md:p-12 text-center relative z-10"
+				>
+					<h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to start trading?</h2>
+					<p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+						Join thousands of traders who have already discovered the power of our platform.
+					</p>
+					<Button size="lg" className="button-gradient rounded-full">
+						Create Account
+						<ArrowRight className="ml-2 size-4" />
+					</Button>
+				</motion.div>
+			</section>
+
+			{/* Footer */}
+			<div className="bg-black">
+				<Footer />
+			</div>
+		</div>
+	);
 }
